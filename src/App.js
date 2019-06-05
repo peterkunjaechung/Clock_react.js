@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Clock from "./Clock";
+import { Button, Container, } from "semantic-ui-react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = { showClock: false, };
+
+  toggleShowClock = () => {
+    this.setState( state => {
+      return { showClock: !state.showClock, };
+    })
+  }
+
+  render() {
+    return (
+    <Container style={{ marginTop: "25px", }}>
+      { this.state.showClock && <Clock /> }
+      <Button onClick={this.toggleShowClock} color="purple">Toggle Clock</Button>
+      </Container>
+    );
+  }
 }
 
 export default App;
